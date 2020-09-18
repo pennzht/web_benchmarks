@@ -1,15 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:web_benchmarks/web_benchmarks.dart';
+import 'package:web_benchmarks/recorder.dart';
 
 void main() {
   // TODO: Use actual testing.
 
-  test('adds one to input values', () {
+  /*test('adds one to input values', () {
     final calculator = Calculator();
     expect(calculator.addOne(2), 3);
     expect(calculator.addOne(-7), -6);
     expect(calculator.addOne(0), 1);
     expect(() => calculator.addOne(null), throwsNoSuchMethodError);
-  });
+  });*/
 }
