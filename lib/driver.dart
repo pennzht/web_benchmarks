@@ -7,7 +7,7 @@ import 'dart:convert' show json;
 import 'dart:html' as html;
 import 'dart:math' as math;
 
-import 'src/web/recorder.dart';
+import 'package:web_benchmarks/recorder.dart';
 
 typedef RecorderFactory = Recorder Function();
 
