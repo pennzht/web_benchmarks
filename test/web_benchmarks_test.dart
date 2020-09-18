@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:web_benchmarks/web_benchmarks.dart';
 
 void main() {
+  // TODO: Use actual testing.
+
   test('adds one to input values', () {
     final calculator = Calculator();
     expect(calculator.addOne(2), 3);
