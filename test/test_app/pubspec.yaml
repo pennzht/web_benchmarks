@@ -12,10 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   web_benchmarks_framework:
-    git:
-      url: https://github.com/material-components/material-components-flutter-experimental.git
-      ref: f6ebb4ed3b6489547d9ae58216df9999112be568
-      path: web_benchmarks_framework
+    path: ../../
 
   cupertino_icons: ^0.1.3
 
