@@ -43,5 +43,6 @@ Future<void> main() async {
     }
 
     print(JsonEncoder.withIndent('  ').convert(taskResult.toJson()));
-  });
+  },
+  timeout: Timeout.none);
 }
