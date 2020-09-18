@@ -1,4 +1,4 @@
-name: web_benchmarks_example
+name: test_app
 description: An example app for web benchmarks testing.
 
 publish_to: 'none'
