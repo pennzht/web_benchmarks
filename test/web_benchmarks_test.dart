@@ -1,7 +1,12 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'dart:convert' show JsonEncoder;
 
-import 'package:web_benchmarks/recorder.dart';
+import 'server/server.dart';
 
-void main() {
-  // TODO: Implement tests.
+Future<void> main() async {
+  final taskResult = await runWebBenchmark(
+    macrobenchmarksDirectory: '.',
+    entryPoint: 'test/test_app/benchmarks/runner.dart',
+    useCanvasKit: false,
+  );
+  print(JsonEncoder.withIndent('  ').convert(taskResult.toJson()));
 }
