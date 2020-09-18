@@ -19,26 +19,26 @@ Future<void> main() async {
         for (final valueName in ['average', 'outlierAverage', 'outlierRatio', 'noise']) {
           expect(
             taskResult.data.keys,
-            contains('$benchmarkName.$metricName.$valueName'),
+            contains('$benchmarkName.html.$metricName.$valueName'),
           );
 
           if (metricName == 'drawFrameDuration' &&
               ['average', 'outlierRatio'].contains(valueName)) {
             expect(
               taskResult.benchmarkScoreKeys,
-              contains('$benchmarkName.$metricName.$valueName'),
+              contains('$benchmarkName.html.$metricName.$valueName'),
             );
           }
         }
       }
       expect(
         taskResult.data.keys,
-        contains('$benchmarkName.totalUiFrame.average'),
+        contains('$benchmarkName.html.totalUiFrame.average'),
       );
 
       expect(
         taskResult.benchmarkScoreKeys,
-        contains('$benchmarkName.totalUiFrame.average'),
+        contains('$benchmarkName.html.totalUiFrame.average'),
       );
     }
 
