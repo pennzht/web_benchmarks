@@ -4,12 +4,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:web_benchmarks_framework/recorder.dart';
-import 'package:web_benchmarks_framework/driver.dart';
-import 'package:web_benchmarks_example/main.dart';
-import 'package:web_benchmarks_example/homepage.dart'
-    show textKey, aboutPageKey;
-import 'package:web_benchmarks_example/aboutpage.dart' show backKey;
+import 'package:web_benchmarks/recorder.dart';
+import 'package:web_benchmarks/driver.dart';
+
+import '../main.dart';
+import '../homepage.dart' show textKey, aboutPageKey;
+import '../aboutpage.dart' show backKey;
 
 /// A recorder that measures frame building durations.
 abstract class AppRecorder extends WidgetRecorder {
