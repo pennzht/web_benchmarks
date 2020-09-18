@@ -44,5 +44,5 @@ Future<void> main() async {
 
     print(JsonEncoder.withIndent('  ').convert(taskResult.toJson()));
   },
-  timeout: Timeout.none);
+  timeout: Timeout(Duration(minutes: 3)));
 }
