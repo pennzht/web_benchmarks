@@ -21,6 +21,13 @@ Map<String, RecorderFactory> _benchmarks;
 
 final LocalBenchmarkServerClient _client = LocalBenchmarkServerClient();
 
+/// Starts a local benchmark client to run [benchmarks].
+///
+/// Usually used in combination with a benchmark server, which orders the
+/// client to run each benchmark in order.
+///
+/// When used without a server, prompts the user to select a benchmark to
+/// run next.
 Future<void> runBenchmarks(Map<String, RecorderFactory> benchmarks) async {
   assert(benchmarks != null);
 
