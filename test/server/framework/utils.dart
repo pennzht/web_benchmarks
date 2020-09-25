@@ -5,15 +5,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math' as math;
 
-import 'package:args/args.dart';
-import 'package:meta/meta.dart';
-import 'package:path/path.dart' as path;
 import 'package:process/process.dart';
-import 'package:stack_trace/stack_trace.dart';
-
-import 'framework.dart';
 
 /// Virtual current working directory, which affect functions, such as [exec].
 String cwd = Directory.current.path;
