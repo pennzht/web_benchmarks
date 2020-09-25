@@ -145,23 +145,6 @@ Future<Process> startProcess(
   return process;
 }
 
-/// Executes a command and returns its exit code.
-Future<int> exec(
-  String executable,
-  List<String> arguments, {
-  Map<String, String> environment,
-  bool canFail = false, // as in, whether failures are ok. False means that they are fatal.
-  String workingDirectory,
-}) async {
-  return _execute(
-    executable,
-    arguments,
-    environment: environment,
-    canFail : canFail,
-    workingDirectory: workingDirectory,
-  );
-}
-
 Future<int> _execute(
   String executable,
   List<String> arguments, {
