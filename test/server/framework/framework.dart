@@ -20,30 +20,6 @@ typedef TaskFunction = Future<TaskResult> Function();
 
 bool _isTaskRegistered = false;
 
-/// Registers a [task] to run, returns the result when it is complete.
-///
-/// The task does not run immediately but waits for the request via the
-/// VM service protocol to run it.
-///
-/// It is OK for a [task] to perform many things. However, only one task can be
-/// registered per Dart VM.
-Future<TaskResult> task(TaskFunction task) {
-  if (_isTaskRegistered)
-    throw StateError('A task is already registered');
-
-  _isTaskRegistered = true;
-
-  // TODO(ianh): allow overriding logging.
-  Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((LogRecord rec) {
-    print('${rec.level.name}: ${rec.time}: ${rec.message}');
-  });
-
-  final _TaskRunner runner = _TaskRunner(task);
-  runner.keepVmAliveUntilTaskRunRequested();
-  return runner.whenDone;
-}
-
 class _TaskRunner {
   _TaskRunner(this.task) {
     registerExtension('ext.cocoonRunTask',
