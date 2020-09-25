@@ -98,53 +98,6 @@ Directory dir(String path) => Directory(path);
 
 File file(String path) => File(path);
 
-void copy(File sourceFile, Directory targetDirectory, {String name}) {
-  final File target = file(
-      path.join(targetDirectory.path, name ?? path.basename(sourceFile.path)));
-  target.writeAsBytesSync(sourceFile.readAsBytesSync());
-}
-
-void recursiveCopy(Directory source, Directory target) {
-  if (!target.existsSync())
-    target.createSync();
-
-  for (final FileSystemEntity entity in source.listSync(followLinks: false)) {
-    final String name = path.basename(entity.path);
-    if (entity is Directory && !entity.path.contains('.dart_tool'))
-      recursiveCopy(entity, Directory(path.join(target.path, name)));
-    else if (entity is File) {
-      final File dest = File(path.join(target.path, name));
-      dest.writeAsBytesSync(entity.readAsBytesSync());
-      // Preserve executable bit
-      final String modes = entity.statSync().modeString();
-      if (modes != null && modes.contains('x')) {
-        makeExecutable(dest);
-      }
-    }
-  }
-}
-
-/// Equivalent of `chmod a+x file`
-void makeExecutable(File file) {
-  // Windows files do not have an executable bit
-  if (Platform.isWindows) {
-    return;
-  }
-  final ProcessResult result = _processManager.runSync(<String>[
-    'chmod',
-    'a+x',
-    file.path,
-  ]);
-
-  if (result.exitCode != 0) {
-    throw FileSystemException(
-      'Error making ${file.path} executable.\n'
-      '${result.stderr}',
-      file.path,
-    );
-  }
-}
-
 /// Starts a subprocess.
 ///
 /// The first argument is the full path to the executable to run.
@@ -347,24 +300,6 @@ Future<String> evalFlutter(String command, {
       canFail: canFail, environment: environment, stderr: stderr);
 }
 
-Future<String> get dartBin async => path.join(
-  (await flutterDirectory).path,
-  'bin',
-  'cache',
-  'dart-sdk',
-  'bin',
-  'dart',
-);
-
-Future<String> get pubBin async => path.join(
-  (await flutterDirectory).path,
-  'bin',
-  'cache',
-  'dart-sdk',
-  'bin',
-  'pub',
-);
-
 Future<T> inDirectory<T>(dynamic directory, Future<T> action()) async {
   final String previousCwd = cwd;
   try {
@@ -389,11 +324,6 @@ void cd(dynamic directory) {
 
   if (!d.existsSync())
     throw FileSystemException('Cannot cd into directory that does not exist', d.toString());
-}
-
-Future<Directory> get flutterDirectory async {
-  String flutterLocation = await eval('which', ['flutter']);
-  return Directory(flutterLocation).parent.parent;
 }
 
 const String flutterCommand = 'flutter';
