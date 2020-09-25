@@ -102,7 +102,3 @@ class TaskResult {
   @override
   String toString() => message;
 }
-
-class TaskResultCheckProcesses extends TaskResult {
-  TaskResultCheckProcesses() : super.success(null);
-}
