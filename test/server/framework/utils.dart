@@ -124,12 +124,6 @@ void recursiveCopy(Directory source, Directory target) {
   }
 }
 
-FileSystemEntity move(FileSystemEntity whatToMove,
-    {Directory to, String name}) {
-  return whatToMove
-      .renameSync(path.join(to.path, name ?? path.basename(whatToMove.path)));
-}
-
 /// Equivalent of `chmod a+x file`
 void makeExecutable(File file) {
   // Windows files do not have an executable bit
