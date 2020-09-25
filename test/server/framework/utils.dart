@@ -66,25 +66,6 @@ void fail(String message) {
   throw BuildFailedError(message);
 }
 
-// Remove the given file or directory.
-void rm(FileSystemEntity entity, { bool recursive = false}) {
-  if (entity.existsSync()) {
-    // This should not be necessary, but it turns out that
-    // on Windows it's common for deletions to fail due to
-    // bogus (we think) "access denied" errors.
-    try {
-      entity.deleteSync(recursive: recursive);
-    } on FileSystemException catch (error) {
-      print('Failed to delete ${entity.path}: $error');
-    }
-  }
-}
-
-/// Remove recursively.
-void rmTree(FileSystemEntity entity) {
-  rm(entity, recursive: true);
-}
-
 List<FileSystemEntity> ls(Directory directory) => directory.listSync();
 
 Directory dir(String path) => Directory(path);
