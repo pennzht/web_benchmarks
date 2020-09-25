@@ -66,11 +66,7 @@ void fail(String message) {
   throw BuildFailedError(message);
 }
 
-List<FileSystemEntity> ls(Directory directory) => directory.listSync();
-
 Directory dir(String path) => Directory(path);
-
-File file(String path) => File(path);
 
 /// Starts a subprocess.
 ///
