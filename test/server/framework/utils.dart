@@ -271,16 +271,6 @@ List<String> flutterCommandArgs(String command, List<String> options) {
   ];
 }
 
-Future<int> flutter(String command, {
-  List<String> options = const <String>[],
-  bool canFail = false, // as in, whether failures are ok. False means that they are fatal.
-  Map<String, String> environment,
-}) {
-  final List<String> args = flutterCommandArgs(command, options);
-  return exec(flutterCommand, args,
-      canFail: canFail, environment: environment);
-}
-
 /// Runs a `flutter` command and returns the standard output as a string.
 Future<String> evalFlutter(String command, {
   List<String> options = const <String>[],
