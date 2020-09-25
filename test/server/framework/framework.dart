@@ -14,10 +14,6 @@ import 'package:stack_trace/stack_trace.dart';
 import 'running_processes.dart';
 import 'utils.dart';
 
-/// Represents a unit of work performed in the CI environment that can
-/// succeed, fail and be retried independently of others.
-typedef TaskFunction = Future<TaskResult> Function();
-
 /// A result of running a single task.
 class TaskResult {
   /// Constructs a successful result.
