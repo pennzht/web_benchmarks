@@ -231,6 +231,8 @@ List<String> flutterCommandArgs(String command, List<String> options) {
   ];
 }
 
+const String flutterCommand = 'flutter';
+
 /// Runs a `flutter` command and returns the standard output as a string.
 Future<String> evalFlutter(String command, {
   List<String> options = const <String>[],
@@ -268,5 +270,3 @@ void cd(dynamic directory) {
   if (!d.existsSync())
     throw FileSystemException('Cannot cd into directory that does not exist', d.toString());
 }
-
-const String flutterCommand = 'flutter';
