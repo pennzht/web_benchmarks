@@ -60,31 +60,6 @@ class ProcessInfo {
   }
 }
 
-/// Result of a health check for a specific parameter.
-class HealthCheckResult {
-  HealthCheckResult.success([this.details]) : succeeded = true;
-  HealthCheckResult.failure(this.details) : succeeded = false;
-  HealthCheckResult.error(dynamic error, dynamic stackTrace)
-      : succeeded = false,
-        details = 'ERROR: $error${'\n$stackTrace' ?? ''}';
-
-  final bool succeeded;
-  final String details;
-
-  @override
-  String toString() {
-    final StringBuffer buf = StringBuffer(succeeded ? 'succeeded' : 'failed');
-    if (details != null && details.trim().isNotEmpty) {
-      buf.writeln();
-      // Indent details by 4 spaces
-      for (final String line in details.trim().split('\n')) {
-        buf.writeln('    $line');
-      }
-    }
-    return '$buf';
-  }
-}
-
 class BuildFailedError extends Error {
   BuildFailedError(this.message);
 
@@ -176,79 +151,6 @@ void makeExecutable(File file) {
   }
 }
 
-/// Equivalent of `mkdir directory`.
-void mkdir(Directory directory) {
-  directory.createSync();
-}
-
-/// Equivalent of `mkdir -p directory`.
-void mkdirs(Directory directory) {
-  directory.createSync(recursive: true);
-}
-
-bool exists(FileSystemEntity entity) => entity.existsSync();
-
-void section(String title) {
-  String output;
-  if (Platform.isWindows) {
-    // Windows doesn't cope well with characters produced for *nix systems, so
-    // just output the title with no decoration.
-    output = title;
-  } else {
-    title = '╡ ••• $title ••• ╞';
-    final String line = '═' * math.max((80 - title.length) ~/ 2, 2);
-    output = '$line$title$line';
-    if (output.length == 79)
-      output += '═';
-  }
-  print('\n\n$output\n');
-}
-
-Future<String> getDartVersion() async {
-  // The Dart VM returns the version text to stderr.
-  final ProcessResult result = _processManager.runSync(<String>[await dartBin, '--version']);
-  String version = (result.stderr as String).trim();
-
-  // Convert:
-  //   Dart VM version: 1.17.0-dev.2.0 (Tue May  3 12:14:52 2016) on "macos_x64"
-  // to:
-  //   1.17.0-dev.2.0
-  if (version.contains('('))
-    version = version.substring(0, version.indexOf('(')).trim();
-  if (version.contains(':'))
-    version = version.substring(version.indexOf(':') + 1).trim();
-
-  return version.replaceAll('"', "'");
-}
-
-Future<String> getCurrentFlutterRepoCommit() async {
-  final Directory _flutterDirectory = await flutterDirectory;
-
-  if (!dir('${_flutterDirectory.path}/.git').existsSync()) {
-    return null;
-  }
-
-  return await inDirectory<String>(_flutterDirectory, () {
-    return eval('git', <String>['rev-parse', 'HEAD']);
-  });
-}
-
-Future<DateTime> getFlutterRepoCommitTimestamp(String commit) async {
-  final Directory _flutterDirectory = await flutterDirectory;
-
-  // git show -s --format=%at 4b546df7f0b3858aaaa56c4079e5be1ba91fbb65
-  return await inDirectory<DateTime>(_flutterDirectory, () async {
-    final String unixTimestamp = await eval('git', <String>[
-      'show',
-      '-s',
-      '--format=%at',
-      commit,
-    ]);
-    final int secondsSinceEpoch = int.parse(unixTimestamp);
-    return DateTime.fromMillisecondsSinceEpoch(secondsSinceEpoch * 1000);
-  });
-}
-
 /// Starts a subprocess.
 ///
 /// The first argument is the full path to the executable to run.
@@ -301,24 +203,6 @@ Future<Process> startProcess(
   });
 
   return process;
-}
-
-Future<void> forceQuitRunningProcesses() async {
-  if (_runningProcesses.isEmpty) {
-    return;
-  }
-
-  // Give normally quitting processes a chance to report their exit code.
-  await Future<void>.delayed(const Duration(seconds: 1));
-
-  // Whatever's left, kill it.
-  for (final ProcessInfo p in _runningProcesses) {
-    print('Force-quitting process:\n$p');
-    if (!p.process.kill()) {
-      print('Failed to force quit process');
-    }
-  }
-  _runningProcesses.clear();
 }
 
 /// Executes a command and returns its exit code.
