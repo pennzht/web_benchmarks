@@ -2,7 +2,7 @@ import 'dart:convert' show JsonEncoder;
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:web_benchmarks/server.dart';
+import 'package:web_benchmarks/server/server.dart';
 
 Future<void> main() async {
   test('Web benchmarks run successfully, returning correct keys', () async {
