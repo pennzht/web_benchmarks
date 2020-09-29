@@ -7,3 +7,7 @@ See [web_benchmarks_example](https://github.com/material-components/material-com
 This package is adapted from
 [macrobenchmarks](https://github.com/flutter/flutter/tree/master/dev/benchmarks/macrobenchmarks),
 one of the packages used by flutter to run performance tests in Chrome for the new Flutter Gallery.
+
+# How to run a test
+
+Run `flutter test test/web_benchmarks_test.dart`.
