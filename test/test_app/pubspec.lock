@@ -43,13 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.3"
-  convert:
-    dependency: transitive
+  cupertino_icons:
+    dependency: "direct main"
     description:
-      name: convert
+      name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "0.1.3"
   fake_async:
     dependency: transitive
     description:
@@ -57,13 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0-nullsafety.1"
-  file:
-    dependency: transitive
-    description:
-      name: file
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.2.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -74,27 +67,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  http_parser:
-    dependency: transitive
-    description:
-      name: http_parser
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.4"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.16.1"
-  logging:
-    dependency: "direct dev"
-    description:
-      name: logging
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.11.4"
   matcher:
     dependency: transitive
     description:
@@ -109,13 +81,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.3"
-  mime:
-    dependency: transitive
-    description:
-      name: mime
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.7"
   path:
     dependency: transitive
     description:
@@ -123,34 +88,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.1"
-  platform:
-    dependency: transitive
-    description:
-      name: platform
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.1"
-  process:
-    dependency: "direct dev"
-    description:
-      name: process
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.13"
-  shelf:
-    dependency: "direct dev"
-    description:
-      name: shelf
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.9"
-  shelf_static:
-    dependency: "direct dev"
-    description:
-      name: shelf_static
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.8"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -212,13 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
-  webkit_inspection_protocol:
-    dependency: "direct dev"
+  web_benchmarks:
+    dependency: "direct main"
     description:
-      name: webkit_inspection_protocol
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.3"
+      path: "../.."
+      relative: true
+    source: path
+    version: "0.0.1"
 sdks:
   dart: ">=2.10.0-110 <=2.11.0-176.0.dev"
   flutter: ">=1.17.0 <2.0.0"

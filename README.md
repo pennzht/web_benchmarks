@@ -2,13 +2,12 @@
 
 A framework to run performance tests for flutter apps in Chrome.
 
-## Getting Started
+See [web_benchmarks_example](https://github.com/material-components/material-components-flutter-experimental/tree/develop/web_benchmarks_example) for an example.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+This package is adapted from
+[macrobenchmarks](https://github.com/flutter/flutter/tree/master/dev/benchmarks/macrobenchmarks),
+one of the packages used by flutter to run performance tests in Chrome for the new Flutter Gallery.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+# How to run a test
+
+Run `flutter test test/web_benchmarks_test.dart`.
